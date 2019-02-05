@@ -1,1 +1,66 @@
+.SwipedTabs-indicatorSegment{
+  -webkit-transition: 0s all;
+  -moz-transition:  0s all;
+  -o-transition:  0s all;
+  transition:  0s all;
+  transform-origin: top 0 left 0;
+  height: 2px;
+  position: relative;
+  top: -2px;
+  background-color: var(--ion-color-tertiary) !important;
+}
+
+.button-native{
+  padding:0px !important;
+}
+/* para que el slide ocupe toda la pantalla */
+ion-slide.swiper-slide {
+  display:block;
+}
+.slides{
+  height: 100%;
+}
+.fixed-scroll{
+  height:100%!important;
+  overflow-y:scroll;
+  position:relative;
+  ::-webkit-scrollbar {
+      display: none !important;
+  }
+}
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+display: none;
+}
+ion-card{
+  margin:10px!important;
+  border-radius: 20px; 
+}
+  
+  ion-title{
+    text-align: start;
+    color: var(--ion-color-text)!important;
+    
+  }
+  
+  ion-content{
+    background-color: var(--ion-color-primary-contrast)!important;
+  }
+  
+  ion-card{
+    background-color: var(--ion-color-primary)!important; 
+  }
+  
+  ion-row{
+    align-self: center;
+  }
+
+  ion-card-title{
+    color: var(--ion-color-text)!important;
+    text-align: center;
+  }
+  
+  .toolbar{
+    background-color: var(--ion-color-primary-contrast)!important; 
+  }
 

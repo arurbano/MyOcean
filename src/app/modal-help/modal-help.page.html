@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>{{titulo}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-card class="card" style="background-color:var(--ion-color-primary)!important;">
+        <ion-card-header>
+        <ion-card-title style="color:var(--ion-color-text)!important;">{{subtitulo}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-card-subtitle style="margin-top: 10px; color:var(--ion-color-text)!important;">{{descripcion}}</ion-card-subtitle  >
+        </ion-card-content>
+      </ion-card>
+      <ion-button expand="full" shape="round" style="margin-top: 10px; color:var(--ion-color-text)!important;" (click)="dismiss()">{{"ok" | translate}}</ion-button>
+  </ion-content>

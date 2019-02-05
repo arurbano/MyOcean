@@ -1,5 +1,7 @@
 {
   "name": "myOcean",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

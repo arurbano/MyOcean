@@ -1,4 +1,44 @@
-.welcome-card ion-img {
-  max-height: 35vh;
-  overflow: hidden;
+.fixed-scroll{
+  height:100%!important;
+  overflow-y:scroll;
+  position:relative;
+  ::-webkit-scrollbar {
+      display: none !important;
+  }
+}
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+display: none;
+}
+
+
+ion-title{
+  color: var(--ion-color-text)!important;
+  
+}
+
+ion-content{
+  background-color: var(--ion-color-primary-contrast)!important;
+}
+
+ion-card{
+  background-color: var(--ion-color-primary)!important; 
+}
+
+ion-card-title{
+  color: var(--ion-color-text)!important;
+  text-align: center;
+}
+
+ion-card-content{
+  color: var(--ion-color-text)!important;
+  text-align: center;
+}
+p{
+  color: var(--ion-color-text)!important;
+  text-align: center;
+}
+
+.toolbar{
+  background-color: var(--ion-color-primary-contrast)!important; 
 }

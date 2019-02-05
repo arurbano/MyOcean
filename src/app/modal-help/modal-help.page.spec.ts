@@ -1,21 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Tab3Page } from './tab3.page';
+import { ModalHelpPage } from './modal-help.page';
 
-describe('Tab3Page', () => {
-  let component: Tab3Page;
-  let fixture: ComponentFixture<Tab3Page>;
+describe('ModalHelpPage', () => {
+  let component: ModalHelpPage;
+  let fixture: ComponentFixture<ModalHelpPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [Tab3Page],
+      declarations: [ ModalHelpPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Tab3Page);
+    fixture = TestBed.createComponent(ModalHelpPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

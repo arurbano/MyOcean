@@ -1,9 +1,69 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
+  <ion-toolbar class="toolbar" color="primary">
+    <ion-row>
+      <ion-col float-left>
+        <ion-title float-left> {{"tab2" | translate}}</ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
+  <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)" style="background-color:var(--ion-color-primary)!important"
+    color="light">
+    <ion-segment-button layout="icon-start" value="0" style="--padding-end:0px;--padding-start:0px">
+      <ion-icon name="nutrition" style="margin-right:1px;zoom:0.8"></ion-icon>
+      <ion-label>{{"tab2" | translate}}</ion-label>
+    </ion-segment-button>
+    <ion-segment-button layout="icon-start" value="1" style="--padding-end:0px;--padding-start:0px">
+      <ion-icon name="add" style="margin-right:1px;zoom:0.8"></ion-icon>
+      <ion-label>{{"add" | translate}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-slides #slides (ionSlideTransitionStart)="updateCat(slides.getActiveIndex())" #SwipedTabsSlider>
+    <ion-slide>
+      <ion-content class="fixed-scroll">
+        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="{{'pull' | translate}}" refreshingSpinner="crescent"
+            refreshingText="{{'loading' | translate}}" ionPull="doRefresh($event)" style="background-color:var(--ion-background-color)!important; --color:var(--ion-item-color)!important;">
+          </ion-refresher-content>
+        </ion-refresher>
+        <ion-col>
+          <ion-row>
+            <ion-searchbar #searchBar id="searchBar" showCancelButton cancelButtonText="Cancelar" placeholder="{{'search' | translate}}"
+              (ionChange)="getFilteredItem($event)" (ionClear)="cambia($event)" (ionCancel)="cambia($event)" style="--background: var(--ion-color-primary)!important;--cancel-button-color:var(--ion-item-color)!important; width: fit-content; color:var(--ion-item-color)!important"></ion-searchbar>
+          </ion-row>
+          <ion-row >
+            <ion-item *ngFor="let item of listadoPanel; let i = index" lines="none">
+              <ion-card class="card" (click)="verDatos(item.id,item.nombre,item.imagen);" style="margin: auto; width: 200px;">
+                <ion-img src="{{item.imagen}}"></ion-img>
+                <ion-card-header>
+                  <ion-card-title>{{item.nombre}}</ion-card-title>
+                </ion-card-header>
+              </ion-card>
+            </ion-item>
+          </ion-row>
+        </ion-col>
+      </ion-content>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-content class="fixed-scroll">
+        <form [formGroup]="pez" (ngSubmit)="logForm()">
+          <ion-item lines="none">
+            <ion-input style="color: var(--ion-item-color)!important; margin: 30px" placeholder='{{ "enter" | translate}}'
+              formControlName="nombre"></ion-input>
+          </ion-item>
+          <ion-item style="display:block; margin-top: 5px; margin-bottom: 5px" lines="none">
+            <ion-img style="padding-right: 10px; height: 150px; width: 150px " id="imagenTaken" #imagenTaken [src]="imagen"></ion-img>
+            <ion-button style="display:block; margin: 0 auto; width: 40%;" (click)="takePic()">{{ "photo" | translate}}</ion-button>
+          </ion-item>
+          <ion-button type="submit" expand="full" shape="round" style="margin-top: 50px; color:var(--ion-color-text)!important;" [disabled]="!pez.valid">{{"save" | translate}}</ion-button>
+        </form>
+      </ion-content>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
