@@ -6,6 +6,7 @@ import { Tab2Page } from '../tab2/tab2.page';
 })
 export class ImagenService {
   imagen: any;
+  modificado: boolean;
 
   constructor() {
     this.imagen = null;
@@ -18,6 +19,16 @@ export class ImagenService {
   // devuelve la imagen para poder usarla en el modal
   getImagen() {
     return this.imagen;
+  }
+
+  setModificado(modified) {
+    this.modificado = modified;
+    console.log('setModificado' + this.modificado);
+  }
+
+  getModificado() {
+    console.log('getModificado' + this.modificado);
+    return this.modificado;
   }
 
 }

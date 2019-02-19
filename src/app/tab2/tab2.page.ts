@@ -23,6 +23,7 @@ export class Tab2Page {
   @ViewChild('dynamicList') dynamicList;
   value: any;
   myloading: any;
+  modificado: boolean;
   listado = [];
   listadoPanel = [];
   SwipedTabsIndicator: any = null;
@@ -30,6 +31,7 @@ export class Tab2Page {
   public category: any = '0';
   ntabs = 2;
   imagen = environment.defecto;
+
 
   @ViewChild('imagenTaken') elemElem: IonImg;
   @ViewChild('SwipedTabsSlider') SwipedTabsSlider: IonSlides;
@@ -89,6 +91,24 @@ enviarImagen(imagen) {
   }
 // se ejecuta al entrar en la ventana y carga la categoria, la lista de items y un cargando
   ionViewDidEnter() {
+    this.actualizarLista();
+  }
+  // muestra el cargando que recarga la ventana entera y no nos permite hacer nada mientras.
+  async presentLoading() {
+    this.myloading = await this.loadingController.create({
+      message: this.translate.instant('loading')
+    });
+    return await this.myloading.present();
+  }
+
+  // iguala la lista de items a la lista de objetos en la base de datos
+  initializeItems() {
+    this.listadoPanel = this.listado;
+  }
+
+  actualizarLista() {
+    this.modificado = this.img.getModificado();
+    console.log(this.modificado);
     this.presentLoading();
     this.category = '0';
     this.SwipedTabsSlider.length().then(l => {
@@ -103,18 +123,6 @@ enviarImagen(imagen) {
         this.listadoPanel = this.listado;
         this.loadingController.dismiss();
       });
-  }
-  // muestra el cargando que recarga la ventana entera y no nos permite hacer nada mientras.
-  async presentLoading() {
-    this.myloading = await this.loadingController.create({
-      message: this.translate.instant('loading')
-    });
-    return await this.myloading.present();
-  }
-
-  // iguala la lista de items a la lista de objetos en la base de datos
-  initializeItems() {
-    this.listadoPanel = this.listado;
   }
 
 // recoge los items de la lista
@@ -185,6 +193,11 @@ enviarImagen(imagen) {
     });
   }
 
+  vueltalista() {
+    this.category = '0';
+    this.ionViewDidEnter();
+  }
+
   // Abre el modal para ver los datos y le pasa el id, el nombre y la imagen
   async verDatos(id, nombre, imagen) {
     this.enviarImagen(imagen);
@@ -196,15 +209,21 @@ enviarImagen(imagen) {
         nombre: nombre,
         imagen: imagen
       }
-
     });
     modal.onDidDismiss().then(response => {
-      this.ionViewDidEnter();
-    })
-      .catch(
-        error => {
-          console.log(error);
-        });
+      this.modificado = this.img.getModificado();
+      console.log('se ha borrado' + this.modificado);
+      if ( this.modificado === true) {
+        this.actualizarLista();
+        this.modificado = false;
+        this.img.setModificado(this.modificado);
+        this.actualizarLista();
+      }
+      })
+    .catch (
+      error => {
+      console.log(error);
+    });
     return await modal.present();
   }
 
@@ -228,5 +247,4 @@ enviarImagen(imagen) {
       this.imagen = 'data:image/jpeg;base64, ' + imageData;
       });
     }
-
 }

@@ -18,6 +18,7 @@ export class ModalPage {
   nombre: any;
   imagen: any;
   myloading: any;
+  modified: boolean;
 
   constructor(private router: Router,
     public modalcontroller: ModalController,
@@ -36,6 +37,7 @@ export class ModalPage {
   ionViewDidEnter() {
     console.log(this.img.getImagen());
     this.miimagen.src = this.img.getImagen(); // no he hecho lo del load porque al usar *ngIf dejaba de reconocer tu src
+    this.modified = false;
   }
   // muestra un cargando
   async presentLoading() {
@@ -72,6 +74,7 @@ export class ModalPage {
           handler: () => {
             console.log(item);
             this.firebase.borraPez(item);
+            this.modified = true;
             this.presentToast();
             this.dismiss();
             console.log('Confirm Okay');
@@ -83,6 +86,8 @@ export class ModalPage {
   }
   // cierra el modal
   dismiss() {
+    this.img.setModificado(this.modified);
+    console.log(this.modified);
     this.modalcontroller.dismiss();
   }
 }

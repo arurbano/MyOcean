@@ -9,6 +9,7 @@
     "enter":"Introduzca el nombre",
     "menu":"Menú",
     "remove":"Eliminar",
+    "nofish":"Aún no se ha introducido ningún pez en la base de datos",
     "fish1":"Miguelin",
     "fish2":"Doradito",
     "photo":"Tomar Foto",

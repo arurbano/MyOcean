@@ -8,6 +8,7 @@
     "add":"Add Fish",
     "enter":"Enter the fish name",
     "remove":"Remove",
+    "nofish":"There are no fishes in the database already",
     "fish1":"Mikey",
     "fish2":"Goldie",
     "photo":"Take picture",
