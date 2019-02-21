@@ -53,11 +53,17 @@ export class Tab2Page {
       imagen: []
     });
   }
+  /**
+   * Manda la imagen del objeto elegido de la lista al servicio
+   * @param imagen Es la imagen en base64 recogida de firebase del objeto elegido
+   */
 enviarImagen(imagen) {
   this.img.setImagen(imagen);
 }
 
-// pasa los datos del inputtext y la imagen convertida a base64, y llama al método que lo guarda en la base de datos
+/**
+ * Pasa los datos del inputtext y la imagen convertida a base64, y llama al método que lo guarda en la base de datos
+ */
   logForm() {
     if (this.imagen === environment.defecto) {
       this.presentToastImg();
@@ -87,13 +93,20 @@ enviarImagen(imagen) {
         /* Cerramos el cargando...*/
         this.loadingController.dismiss();
       });
+      this.vueltalista();
     }
   }
-// se ejecuta al entrar en la ventana y carga la categoria, la lista de items y un cargando
+
+  /**
+   * Se ejecuta al entrar en la ventana llama al método que carga la lista
+   */
   ionViewDidEnter() {
     this.actualizarLista();
   }
-  // muestra el cargando que recarga la ventana entera y no nos permite hacer nada mientras.
+
+  /**
+   * Muestra el cargando que recarga la ventana entera y no nos permite hacer nada mientras
+   */
   async presentLoading() {
     this.myloading = await this.loadingController.create({
       message: this.translate.instant('loading')
@@ -101,11 +114,16 @@ enviarImagen(imagen) {
     return await this.myloading.present();
   }
 
-  // iguala la lista de items a la lista de objetos en la base de datos
+  /**
+   * Iguala la lista de items a la lista de objetos en la base de datos
+   */
   initializeItems() {
     this.listadoPanel = this.listado;
   }
 
+/**
+ * Carga la categoria, la lista de items y un cargando
+ */
   actualizarLista() {
     this.modificado = this.img.getModificado();
     console.log(this.modificado);
@@ -125,7 +143,10 @@ enviarImagen(imagen) {
       });
   }
 
-// recoge los items de la lista
+  /**
+   * Recoge los items de la lista
+   * @param ev Es el evento de pulsar sobre la barra de busqueda
+   */
   getItems(ev: any) {
     this.initializeItems();
     // tslint:disable-next-line:prefer-const
@@ -137,7 +158,10 @@ enviarImagen(imagen) {
     }
   }
 
-  // este método es llamado por la searchbar para filtrar la lista de items
+  /**
+   * Este método es llamado por la searchbar para filtrar la lista de items
+   * @param ev Es el evento que se lanza cuando se busca en la barra de busqueda
+   */
   getFilteredItem(ev: any) {
     this.initializeItems();
     // set val to the value of the ev target
@@ -149,12 +173,17 @@ enviarImagen(imagen) {
     });
   }
 
-  // devuelve la lista de items, se usa para que con cada cambio en la searchbar se "refresque" la lista
+/**
+ *  Devuelve la lista de items, se usa para que con cada cambio en la searchbar se "refresque" la lista
+ * @param ev Es el evento que se lanza cuando cambia el contenido de la barra de busqueda
+ */
   cambia(ev: any) {
     return this.listado;
   }
 
-  // refresca la lista de items
+/**
+ * Nos permite refrescar la lista de items deslizando hacia abajo
+ */
   doRefresh(refresher) {
     this.firebase.leePeces()
       .subscribe(querySnapshot => {
@@ -167,7 +196,9 @@ enviarImagen(imagen) {
       });
   }
 
-  // muestra una toast con el mensaje de falta de imagen
+/**
+ * Muestra una toast con el mensaje de falta de imagen
+ */
   async presentToastImg() {
     const toast = await this.toastController.create({
       message: this.translate.instant('toastimg'),
@@ -176,7 +207,9 @@ enviarImagen(imagen) {
     toast.present();
   }
 
- // muestra un toast con un mensaje de guardado correcto
+/**
+ * Muestra una toast con el mensaje de guardado correcto
+ */
   async presentToastSave() {
     const toast = await this.toastController.create({
       message: this.translate.instant('toastsave'),
@@ -185,20 +218,30 @@ enviarImagen(imagen) {
     toast.present();
   }
 
-  /* Actualiza la categoría que esté en ese momento activa*/
+   /**
+    * Actualiza la categoría que esté en ese momento activa
+    * @param cat Es un promise
+    */
   updateCat(cat: Promise<any>) {
     cat.then(dat => {
       this.category = dat;
       this.category = +this.category; // to int;
     });
   }
-
+/**
+ * Nos devuelve a la lista de peces y la recarga
+ */
   vueltalista() {
     this.category = '0';
     this.ionViewDidEnter();
-  }
+}
+  /**
+   * Este metodo abre un modal para ver los datos y le pasa el id, el nombre y la imagen
+   * @param id  Es el id del objeto escogido de la lista
+   * @param nombre Es el nombre del objeto escogido de la lista
+   * @param imagen Es la imagen en base64 del objeto escogido de la lista
+   */
 
-  // Abre el modal para ver los datos y le pasa el id, el nombre y la imagen
   async verDatos(id, nombre, imagen) {
     this.enviarImagen(imagen);
     // tslint:disable-next-line:prefer-const
@@ -227,7 +270,10 @@ enviarImagen(imagen) {
     return await modal.present();
   }
 
-// abre la camara y nos permite tomar las fotos
+  /**
+   * Abre la camara y nos permite tomar las fotos
+   */
+
   takePic() {
     const options: CameraOptions = {
       quality: 100,

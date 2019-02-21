@@ -25,7 +25,10 @@ export class CambiotemaService {
 
     this.themes = [
       {
-        name: 'light', // estos son los colores que se usaran al seleccionar el tema claro
+        name: 'light',
+        /**
+        * Estos son los colores que se usaran al seleccionar el tema claro
+        */
         styles: [
           { themeVariable: '--ion-color-primary', value: '#669dff' },
           { themeVariable: '--ion-color-primary-rgb', value: '102, 157, 255' },
@@ -50,7 +53,10 @@ export class CambiotemaService {
         ]
       },
       {
-        name: 'dark', // estos son los colores que se usaran al seleccionar el tema oscuro
+        name: 'dark',
+        /**
+        * Estos son los colores que se usaran al seleccionar el tema oscuro
+        */
         styles: [
           { themeVariable: '--ion-color-primary', value: '#283044' },
           { themeVariable: '--ion-color-primary-rgb', value: '40, 48, 68' },
@@ -77,7 +83,9 @@ export class CambiotemaService {
 
   }
 
-  // cambia de un tema al otro
+  /**
+   * Cambia de un tema al otro
+   */
   cycleTheme(): void {
 
     if (this.themes.length > this.currentTheme + 1) {
@@ -90,7 +98,10 @@ export class CambiotemaService {
 
   }
 
-  // pone el tema a uno determinado
+  /**
+   * Pone el tema a uno determinado
+   * @param name Es el nombre del tema que quiere
+   */
   setTheme(name): void {
 
     // tslint:disable-next-line:no-shadowed-variable

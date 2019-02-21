@@ -33,13 +33,18 @@ export class ModalPage {
     this.id = this.navP.get('id');
     console.log(this.imagen);
   }
-// al entrar al modal le pasa la imagen recogida por el servicio y la muestra
+
+/**
+ *  Al entrar al modal le pasa la imagen recogida por el servicio y la muestra y pone el valor del modified a false
+ */
   ionViewDidEnter() {
     console.log(this.img.getImagen());
     this.miimagen.src = this.img.getImagen(); // no he hecho lo del load porque al usar *ngIf dejaba de reconocer tu src
     this.modified = false;
   }
-  // muestra un cargando
+  /**
+   *  Muestra un cargando
+   */
   async presentLoading() {
     this.myloading = await this.loadingController.create({
       message: this.translate.instant('loading')
@@ -47,7 +52,9 @@ export class ModalPage {
     return await this.myloading.present();
   }
 
-  // presenta un modal con la confirmacion del borrado
+   /**
+    * Muestra un toast con la confirmacion del borrado del pez
+    */
   async presentToast() {
     const toast = await this.toastController.create({
       message: this.translate.instant('toastdel'),
@@ -56,7 +63,10 @@ export class ModalPage {
     toast.present();
   }
 
-  // muestra una alerta para confirmar el borrado del pez actual
+  /**
+   * Muestra una alerta para confirmar el borrado del pez actual
+   * @param item Es la informacion del objeto que se va a borrar
+   */
   async presentAlertConfirm(item) {
     const alert = await this.alertController.create({
       header: this.translate.instant('conf'),
@@ -84,7 +94,9 @@ export class ModalPage {
     });
     return await alert.present();
   }
-  // cierra el modal
+/**
+ * Cierra el modal
+ */
   dismiss() {
     this.img.setModificado(this.modified);
     console.log(this.modified);

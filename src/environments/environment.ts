@@ -10,9 +10,10 @@ export const environment = {
     misPeces: 'mispeces'
   },
   pezCollection: 'mispeces',
-  currentLanguages: ['es', 'en'], // idiomas disponibles de la aplicación
-  defaultLanguage: 'es',  // idioma por defecto
-  defaultSkin: 'light',  // tema por defecto
-  defecto: '../assets/imgs/myocean.png' // imagen por defecto
+  currentLanguages: ['es', 'en'], /** Son los dos idiomas disponibles de la aplicación*/
+  defaultLanguage: 'es',  /** Es el idioma por defecto de la aplicación*/
+  defaultSkin: 'light',  /** Es el tema por defecto de la aplicación*/
+  defecto: '../assets/imgs/myocean.png' /** Es la imagen que se muestra por defecto en aplicación
+  antes de hacer ninguna foto para crear un pez*/
 };
 

@@ -20,7 +20,12 @@ export class Tab1Page {
 
   }
 
-// abre el modal donde veremos los datos de la ayuda en cuestion
+/**
+ * Abre el modal donde veremos los datos de la ayuda de alimentacion
+ * @param titulo Es el titulo de la ayuda de alimentacion que recogemos del json de traducciones
+ * @param subtitulo Es el subtitulo de la ayuda de alimentacion que recogemos del json de traducciones
+ * @param descripcion Es la descripcion de la ayuda de alimentacion que recogemos del json de traducciones
+ */
   async verAyudaFeed(titulo, subtitulo, descripcion) {
     // tslint:disable-next-line:prefer-const
     let modalHelp = await this.modalController.create({
@@ -40,7 +45,12 @@ export class Tab1Page {
         return await modalHelp.present();
       }
 
-// abre el modal donde veremos los datos de la ayuda en cuestion
+/**
+ * Abre el modal donde veremos los datos de la ayuda de limpieza
+ * @param titulo Es el titulo de la ayuda de limpieza que recogemos del json de traducciones
+ * @param subtitulo Es el subtitulo de la ayuda de limpieza que recogemos del json de traducciones
+ * @param descripcion Es la descripcion de la ayuda de limpieza que recogemos del json de traducciones
+ */
     async verAyudaClean(titulo, subtitulo, descripcion) {
       // tslint:disable-next-line:prefer-const
       let modalHelp = await this.modalController.create({
@@ -60,7 +70,12 @@ export class Tab1Page {
           return await modalHelp.present();
         }
 
-// abre el modal donde veremos los datos de la ayuda en cuestion
+/**
+ * Abre el modal donde veremos los datos de la ayuda de cuidados
+ * @param titulo Es el titulo de la ayuda de cuidados que recogemos del json de traducciones
+ * @param subtitulo Es el subtitulo de la ayuda de cuidados que recogemos del json de traducciones
+ * @param descripcion Es la descripcion de la ayuda de cuidados que recogemos del json de traducciones
+ */
       async verAyudaCares(titulo, subtitulo, descripcion) {
         // tslint:disable-next-line:prefer-const
         let modalHelp = await this.modalController.create({

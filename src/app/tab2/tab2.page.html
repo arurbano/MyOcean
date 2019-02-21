@@ -64,7 +64,7 @@
             <ion-img style="padding-right: 10px; height: 150px; width: 150px " id="imagenTaken" #imagenTaken [src]="imagen"></ion-img>
             <ion-button style="display:block; margin: 0 auto; width: 40%;" (click)="takePic()">{{ "photo" | translate}}</ion-button>
           </ion-item>
-          <ion-button type="submit" (click)="vueltalista()" expand="full" shape="round" style="margin-top: 50px; color:var(--ion-color-text)!important;" [disabled]="!pez.valid">{{"save" | translate}}</ion-button>
+          <ion-button type="submit" expand="full" shape="round" style="margin-top: 50px; color:var(--ion-color-text)!important;" [disabled]="!pez.valid">{{"save" | translate}}</ion-button>
         </form>
       </ion-content>
     </ion-slide>

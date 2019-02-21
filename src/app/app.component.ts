@@ -26,36 +26,43 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-   // private camera: Camera,
     private cambS: CambiotemaService,
     private navCtrl: NavController,
     private sanitizer: DomSanitizer,
     private translate: TranslateService
   ) {
-    // al iniciar la aplicacion lo hace con los valores por defecto
+
+/**
+ * Al iniciar la aplicacion lo hace con los valores por defecto recogidos del environment
+ */
     this.initializeApp();
     this.skinmenu = (environment.defaultSkin === 'light' ? false : true);
     this.langmenu = (environment.defaultLanguage === 'es' ? false : true);
   }
 
+  /**
+   * Añade los idiomas disponibles en nuestra app, recoge el idioma del buscador si es posible y cargamos el estilo por defecto
+   */
   initializeApp() {
     this.platform.ready().then(() => {
-      this.translate.addLangs(environment.currentLanguages);  // añade los idiomas disponibles en nuestra app
+      this.translate.addLangs(environment.currentLanguages);
       this.translate.setDefaultLang(environment.defaultLanguage);
       this.translate.use(environment.defaultLanguage);
-      if (this.translate.getBrowserLang) {  // recoge el idioma del buscador si es posible
+      if (this.translate.getBrowserLang) {
         if (environment.currentLanguages.includes(this.translate.getBrowserLang())) {
            this.translate.use(this.translate.getBrowserLang());
         }
-
-      //  Cargamos el estilo por defecto
       this.cambS.setTheme(environment.defaultSkin);
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       }
     });
   }
-// este metodo cambia el idioma de la aplicacion
+
+/**
+ * Este metodo cambia el idioma de la aplicacion
+ * @param e Es el evento de pulsar el toggle para cambiar de idioma
+ */
   changeLang(e) {
     // console.log(e.detail.checked);
     if (e.detail.checked) {
@@ -64,7 +71,11 @@ export class AppComponent {
       this.translate.use('es');
        }
   }
-  // este metodo cambia el tema de la aplicacion
+
+/**
+ * Este metodo cambia el tema de la aplicacion
+ * @param e Es el evento de pulsar el toggle para cambiar de tema
+ */
     changeSkin(e) {
       if (e.detail.checked) {
         this.cambS.setTheme('dark');

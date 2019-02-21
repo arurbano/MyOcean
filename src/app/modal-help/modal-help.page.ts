@@ -8,13 +8,26 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalHelpPage {
 
+/**
+ * Es el titulo de la ayuda elegida
+ */
   titulo: any;
+
+ /**
+ * Es el subtitulo de la ayuda elegida
+ */
   subtitulo: any;
+
+ /**
+ * Es la descripcion de la ayuda elegida
+ */
   descripcion: any;
 
   constructor(public modalcontroller: ModalController) {
   }
- // cierra el modal
+ /**
+  * Cierra el modal
+  */
   dismiss() {
     this.modalcontroller.dismiss();
   }
